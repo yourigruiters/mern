@@ -19,4 +19,4 @@ router.route('/:id').put(updateGoal).delete(deleteGoal);
 
 // router.delete('/:id', deleteGoal);
 
-export default router;
+export default goalRouter;
