@@ -5,18 +5,17 @@ import {
   updateGoal,
   deleteGoal,
 } from '../controllers/goalController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/').get(getGoals).post(createGoal);
-router.route('/:id').put(updateGoal).delete(deleteGoal);
+router
+  .route('/')
+  .get(authMiddleware, getGoals)
+  .post(authMiddleware, createGoal);
+router
+  .route('/:id')
+  .put(authMiddleware, updateGoal)
+  .delete(authMiddleware, deleteGoal);
 
-// router.get('/', getGoals);
-
-// router.post('/', createGoal);
-
-// router.put('/:id', updateGoal);
-
-// router.delete('/:id', deleteGoal);
-
-export default goalRouter;
+export default router;
