@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./frontend/src",
     "paths": {
       "app": ["app"]
     },
@@ -20,7 +20,7 @@
     "declaration": true,
     "declarationDir": "lib",
     "allowJs": true,
-    "typeRoots": ["node_modules/@types", "src/app/typings"],
+    "typeRoots": ["node_modules/@types", "frontend/src/app/typings"],
     /* Additional checks */
     "noUnusedLocals": true /* Report errors on unused locals. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
@@ -28,5 +28,5 @@
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
     "allowUnreachableCode": false /* Report errors about unreachable code. */
   },
-  "include": ["src", "webpack"]
+  "include": ["./frontend/src", "webpack"]
 }

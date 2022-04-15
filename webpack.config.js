@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const __dirname = path.resolve();
 
 export default {
-  entry: './src/index.tsx',
+  entry: './frontend/src/index.tsx',
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -24,7 +24,6 @@ export default {
         loader: 'ts-loader',
       },
       { test: /\.(js)$/, use: 'babel-loader' },
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.(sa|sc|c)ss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -41,7 +40,7 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/assets/index.html',
+      template: './frontend/src/assets/index.html',
     }),
   ],
 };
