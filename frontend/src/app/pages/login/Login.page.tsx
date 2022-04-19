@@ -21,10 +21,10 @@ const LoginPage: React.FC<Props> = () => {
   const { email, password } = formData;
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.currentTarget.name]: e.currentTarget.value,
-    }));
+    setFormData({
+      ...formData,
+      [e.currentTarget?.name]: e.currentTarget.value,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +41,6 @@ const LoginPage: React.FC<Props> = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            id="email"
             value={email}
             name="email"
             placeholder="Enter your email"
@@ -49,7 +48,6 @@ const LoginPage: React.FC<Props> = () => {
           />
           <input
             type="password"
-            id="password"
             value={password}
             name="password"
             placeholder="Enter your password"

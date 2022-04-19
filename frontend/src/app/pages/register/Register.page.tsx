@@ -25,10 +25,10 @@ const RegisterPage: React.FC<Props> = () => {
   const { name, email, password, password2 } = formData;
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.currentTarget.name]: e.currentTarget.value,
-    }));
+    setFormData({
+      ...formData,
+      [e.currentTarget?.name]: e.currentTarget.value,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -45,7 +45,6 @@ const RegisterPage: React.FC<Props> = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            id="name"
             value={name}
             name="name"
             placeholder="Enter your name"
@@ -53,7 +52,6 @@ const RegisterPage: React.FC<Props> = () => {
           />
           <input
             type="text"
-            id="email"
             value={email}
             name="email"
             placeholder="Enter your email"
@@ -61,7 +59,6 @@ const RegisterPage: React.FC<Props> = () => {
           />
           <input
             type="password"
-            id="password"
             value={password}
             name="password"
             placeholder="Enter your password"
@@ -69,7 +66,6 @@ const RegisterPage: React.FC<Props> = () => {
           />
           <input
             type="password"
-            id="password2"
             value={password2}
             name="password2"
             placeholder="Re-enter your password"
