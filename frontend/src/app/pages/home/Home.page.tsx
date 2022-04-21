@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const Container = styled.div`
-  ${({ theme: { colors } }) => `
-    background-color: ${colors.red08};
-  `}
-`;
+const Container = styled.div``;
 
 const CRAText = styled.h1`
   padding-left: 10px;
@@ -16,26 +12,18 @@ const CRAText = styled.h1`
 `;
 
 const Button = styled.button`
-  ${({ theme: { colors } }) => `
-  background-color: ${colors.neutral00};
-  color: ${colors.text00};
   margin: 40px;
   padding: 20px;
-`}
 `;
 
-interface Props {
-  setTheme: () => void;
-}
+interface Props {}
 
-const HomePage: React.FC<Props> = ({ setTheme }) => {
-  const testing = 'Toggle Theme';
-
+const HomePage: React.FC<Props> = () => {
   return (
     <>
       <CRAText>CRA-Personal Placeholder</CRAText>
       <Container>
-        <Button onClick={setTheme}>{testing}</Button>
+        <Button>Hoi - Doet niks</Button>
       </Container>
     </>
   );
