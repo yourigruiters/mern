@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { login, reset } from '../../redux/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'app/redux/store';
 
 const LoginContainer = styled.div``;
 
@@ -15,10 +20,24 @@ const LoginPage: React.FC<Props> = () => {
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log(useEffect);
+  const { user, isLoading, isError, isSuccess, message } =
+    useSelector((state: RootState) => state.auth);
 
   const { email, password } = formData;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate('/');
+      dispatch(reset());
+    }
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setFormData({
@@ -29,7 +48,19 @@ const LoginPage: React.FC<Props> = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    // @ts-ignore:next-line
+    dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <LoginContainer>

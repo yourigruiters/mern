@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { register, reset } from '../../redux/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'app/redux/store';
 
 const RegisterContainer = styled.div``;
 
@@ -19,10 +24,24 @@ const RegisterPage: React.FC<Props> = () => {
     password: '',
     password2: '',
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log(useEffect);
+  const { user, isLoading, isError, isSuccess, message } =
+    useSelector((state: RootState) => state.auth);
 
   const { name, email, password, password2 } = formData;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate('/');
+      dispatch(reset());
+    }
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setFormData({
@@ -33,7 +52,24 @@ const RegisterPage: React.FC<Props> = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (password !== password2) {
+      toast.error('Passwords do not match');
+    }
+
+    const userData = {
+      name,
+      email,
+      password,
+    };
+
+    // @ts-ignore:next-line
+    dispatch(register(userData));
   };
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <RegisterContainer>

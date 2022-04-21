@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/home/Home.page';
 import DashboardPage from './pages/dashboard/Dashboard.page';
@@ -18,6 +20,7 @@ const App: React.FC<Props> = () => {
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
